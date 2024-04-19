@@ -11,6 +11,9 @@
 
 This web application allows users to visualize the rate of revisions on selected Wikipedia pages during a time interval related to an event in solar history. It initially plots data over a 21-month period, but users can customize the interval and time units and regenerate plots accordingly. Additional features include hover details on plot points that display specific date ranges.
 
+<img width="1432" alt="Screenshot 2024-04-19 at 2 47 39 PM" src="https://github.com/SofiaWongg/SwiftSolarTakehome/assets/69434698/71159414-8050-4b99-805e-cab5581e14d8">
+
+
 ## Run Instructions
 
 1. Clone the repository.
