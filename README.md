@@ -51,17 +51,7 @@ I separated features I wanted into wants and needs:
 Although this was a small project I tried to focus on making the functionalities scalable, for example reading in the CSV rather than hard coding events or going through each wiki page in a for loop. I also foucused on separating code in a way that would be useful for a larger project. For example separating the network call into a separate function and creating smaller functions that could be reused for different tasks.
 ## Solution
 
-```flow
-start=>start: Start
-fetch_data=>operation: Fetch event data from CSV (load_solar_events)
-api_call=>operation: Retrieve data from API for time interval and wikiPage (get_num_revisions)
-aggregate=>operation: Aggregate revisions for each event (create_dictionary)
-plot_chart=>operation: Render HTML and plots (frequency_plots.html or process_form)
-user_input=>operation: User adds desired interval and unit and presses generate (process_form)
-
-start->fetch_data->api_call->aggregate->plot_chart->user_input->fetch_data
-```
-
+<img width="691" alt="Screenshot 2024-04-19 at 11 17 41 AM" src="https://github.com/SofiaWongg/SwiftSolarTakehome/assets/69434698/c625a1a5-e8f1-4c5e-93b4-adddeb682b0f">
 
 **Load Solar Events Function: **This function reads data from a CSV file containing information about solar energy events. It uses Pandas to load the CSV file into a DataFrame and returns the DataFrame.
 
