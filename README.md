@@ -9,7 +9,7 @@
 
 ## Summary
 
-A web app that allows us to plot the rate of revisions on chosen Wikipedia pages that relate to the data we have about solar events. The plots are initialized with an interval of 21 and a time unit of months, but users can select their interval and unit and re-generate plots. When hovering over plots, users can see the date range of a particular value and the event date. 
+This web application allows users to visualize the rate of revisions on selected Wikipedia pages during a time interval related to an event in solar history. It initially plots data over a 21-month period, but users can customize the interval and time units and regenerate plots accordingly. Additional features include hover details on plot points that display specific date ranges.
 
 ## Run Instructions
 
@@ -34,15 +34,15 @@ In your terminal navigate to the folder where manage.py is located and run:
 
 Given a limited timeframe for a large project I started by listing my essentials, and working on them in that order:
 
-I separated features I wanted into wants and needs:
+I separated features I wanted into scope and reach goals:
 
-**Needs:**
+**Scope:**
 -  :sunny: Retrieve revision data from API for particular time range
 -  :sunny: Sort data by event
 -  :sunny: Create a chart with given data
 -  :sunny: Good documentation
 
-**Wants:**
+**Reach Goals:**
 -  :sunny: Adjustable event input (CSV)
 -  :cloud: Basic testing
 - Data saving capability for future reference
