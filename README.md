@@ -37,7 +37,7 @@ Given a limited timeframe for a large project I started by listing my essentials
 I separated features I wanted into wants and needs:
 
 **Needs:**
--   :sunny: Retrieve revision data from API for particular time range
+-  :sunny: Retrieve revision data from API for particular time range
 -  :sunny: Sort data by event
 -  :sunny: Create a chart with given data
 -  :sunny: Good documentation
@@ -48,27 +48,33 @@ I separated features I wanted into wants and needs:
 - Data saving capability for future reference
 - Improved user interface
 
-Although this was a small project I tried to focus on making the functionalities scalable, for example reading in the CSV rather than hard coding events or going through each wiki page in a for loop. I also foucused on separating code in a way that would be useful for a larger project. For example separating the network call into a separate function and creating smaller functions that could be reused for different tasks.
+I started this project by retrieving the correct data from the API. After getting the correct data, I decided on how I wanted to hold that data and settled on a dictionary to easily add to the arrays and reference them by event name. After storing my information from the API in a dictionary, I used it to generate plots for each event. Once plots were generated with hard-coded values, I created spaces for user inputs and created a method call that allowed me to re-generate plots with user-specified values. Once I completed these tasks, I worked on smaller features to help a user visually understand the plots - this includes features like the text when a user hovers over the points or descriptions of the user's current query at the top. 
+
+Although this was a small project, I focused on making the functionalities scalable, for example, reading in the CSV rather than hard coding events or going through each wiki page in a for loop. I also focused on separating code in a way that would be useful for a larger project—for example, separating the API call into a separate function and creating smaller functions that could be reused for different tasks.
+
 ## Solution
 
 <img width="691" alt="Screenshot 2024-04-19 at 11 17 41 AM" src="https://github.com/SofiaWongg/SwiftSolarTakehome/assets/69434698/c625a1a5-e8f1-4c5e-93b4-adddeb682b0f">
 
-**Load Solar Events Function: **This function reads data from a CSV file containing information about solar energy events. It uses Pandas to load the CSV file into a DataFrame and returns the DataFrame.
+**load_solar_events:** This function reads data from a CSV file containing information about solar energy events. It uses Pandas to load the CSV file into a DataFrame and returns the DataFrame.
 
-**Frequency Plots Function: **This is the main function responsible for generating frequency plots of revisions for solar energy events. It first loads solar events data using the load_solar_events function. Then, it iterates over each event, calculating the start and end dates for a 20-month period relative to the event date. Within this period, it calls the get_num_revisions function to retrieve the number of revisions for each month. The revisions data is aggregated and stored in a dictionary (revisions_by_month). Finally, the dictionary is converted into a DataFrame (revisions_df) and passed as a context variable to render a template for displaying the frequency plots.
+**create_dictionary** This function calls get_num_revisions from wiki_api.py for each event and stores information in a dictionary with event names mapped to arrays of revisions. Returns this dictionary along with an array of event dates. 
 
-**Get Num Revisions Function:** This function makes GET requests to the Wikipedia API to retrieve revision data for a specified event within a given time interval. It iterates over each month within the interval, making API requests to fetch revision data. The number of revisions for each month is stored in a list (revisions_array), which is returned after all months have been processed.
+**get_num_revisions:** This function makes GET requests to the Wikipedia API to retrieve revision data for a specified event within a given time interval. It iterates over each month within the interval, making API requests to fetch revision data. The number of revisions for each month is stored in a list (revisions_array), which is returned after all months have been processed.
+
+**process_form** This function is called whenever a user presses "Generate Plots" and uses user input to generate new plots. Renders the HTML file: frequency_plots.html.
+
+**frequency_plots** This is the function called to generate plots on initial load. Similar to process_form, but uses default values '20' and 'months' to generate plots. Renders the HTML file: frequency_plots.html.
 
 ## Resources Used
 
-**Django: **The web framework used to build the application.
 **Pandas:** A Python library used for data manipulation and analysis, particularly for loading data from CSV files.
-**Plotly: **A Python graphing library used for creating interactive plots and visualizations.
+**Plotly:** A Python graphing library used for creating interactive plots and visualizations.
 **Requests:** A Python HTTP library used for making HTTP requests to the Wikipedia API.
 **Wikipedia API:** The API used to retrieve revision data for Wikipedia pages related to solar energy events.
-**NumPy: **A Python library used for numerical computing, though it's not explicitly used in this project.
+**NumPy:** A Python library used for numerical computing, though it's not explicitly used in this project.
 **datetime:** A Python module used for manipulating dates and times.
-**CSV file: **A local file containing data about solar energy events, accessed using Python's built-in file reading capabilities.
+**CSV file:** A local file containing data about solar energy events, accessed using Python's built-in file reading capabilities.
 
 
 ## Future Considerations
