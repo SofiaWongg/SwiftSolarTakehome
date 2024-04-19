@@ -79,8 +79,13 @@ Although this was a small project, I focused on making the functionalities scala
 
 ## Future Considerations
 
-- Data saving capability for future reference
-- Improved user interface (loading signs, )
-- Ability to choose event to plot
-- Ability to add or remove wiki-pages
-- More flexible time range options
+Here are some features I would have liked to include in this project, given extra time:
+
+- **Data saving capability for future reference** - One of the most significant downsides to this tool is the loading time. Since data generally remains the same from query to query, having a data-saving capability could be incredibly useful. It would also allow me to hold larger amounts of data since I would not need to load data every time, and it could lead to more detailed and effective plots. 
+
+- **Improved user interface** - The plots currently have most of the basic information a user could need, but there is a lot that could be added to help users understand the graph, such as more dates, averages, or comparisons. There are also some features that would help usability, such as font size, loading signs, or descriptive error messages. 
+
+- **More flexible selections** - Currently, users have limited choices regarding what they can see and how they can adjust their query. Some flexibility I imagine adding is the ability to select events to plot, the ability to add or remove wiki pages, and more flexible time range options. These changes would help provide more effective graphs for users and potentially help loading times since users could only load data they need to see. 
+
+- **Testing** - There is a lot that could be added to testing. Currently, only the API call and CSV reader are tested, but there should really be multiple tests for each function. There are also better ways to test API's and endpoints outside of the unit testing django.test functionality. 
+
