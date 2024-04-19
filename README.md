@@ -71,7 +71,7 @@ Although this was a small project, I focused on making the functionalities scala
 
 Here are some features I would have liked to include in this project, given extra time:
 
-- **Data saving capability for future reference** - One of the most significant downsides to this tool is the loading time. Since data generally remains the same from query to query, having a data-saving capability could be incredibly useful. It would also allow me to hold larger amounts of data since I would not need to load data every time, and it could lead to more detailed and effective plots. 
+- **Data saving capability for future reference (Django Caching)** - One of the most significant downsides to this tool is the loading time. Since data generally remains the same from query to query, having a data-saving capability could be incredibly useful. It would also allow me to hold larger amounts of data since I would not need to load data every time, and it could lead to more detailed and effective plots. 
 
 - **Improved user interface** - The plots currently have most of the basic information a user could need, but there is a lot that could be added to help users understand the graph, such as more dates, averages, or comparisons. There are also some features that would help usability, such as font size, loading signs, or descriptive error messages. 
 
