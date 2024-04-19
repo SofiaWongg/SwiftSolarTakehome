@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="utf-8" />
+    <title>Let's Get Plotly - with Frequency</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+<h1>Wiki Solar Revisions</h1>
+<p>A web app that allow us to plot the rate of revisions on chosen Wikipedia pages that relate to the data we have about solar events. Plots show number of revisions in given date range.</p>
+<p>Submit your interval and units, and then press "Update Plots" to see results</p>
+
+<form method="post" action="{% url 'process_form' %}">
+    {% csrf_token %}
+    <select name="my_input">
+        <!-- Doing even numbers so that we can have an even graph -->
+        <option value="2">3</option>
+        <option value="4">5</option>
+        <option value="6">7</option>
+        <option value="8">9</option>
+        <option value="10">11</option>
+        <option value="12">13</option>
+        <option value="14">15</option>
+        <option value="16">17</option>
+        <option value="18">19</option>
+        <option value="20">21</option>
+        <option value="22">23</option>
+        <option value="24">25</option>
+    </select>
+
+    <select id="unit" name="unit">
+        <option value="days">Days</option>
+        <option value="weeks">Weeks</option>
+        <option value="months">Months</option>
+    </select>
+
+
+    <button type="submit">Update Plots</button>
+</form>
+
+<!-- Display the currently selected unit and interval -->
+<p>You are currently looking at data for {{ interval|add:1 }} {{ unit }} </p>
+
+<!-- Placeholder for the Plotly charts -->
+<div id='myDiv'></div>
+
+<!-- JavaScript function to create the Plotly charts -->
+<script>
+    var revisionsByMonth = JSON.parse('{{ revisions_by_month|escapejs }}'.replace(/'/g, '"'));
+    var unit = '{{ unit }}'; // Get the unit value from the context
+    var interval = '{{ interval }}'; // Get the interval value from the context
+    
+
+    var dateList = JSON.parse('{{ dates_list|escapejs }}'.replace(/'/g, '"'));
+    console.log(dateList);
+    // index to keep track of date
+    var index = 0
+
+    // Loop through each event in revisionsByMonth
+    Object.keys(revisionsByMonth).forEach(function(event) {
+        // Create a div element for the chart
+        var divId = event.replace(/[^a-zA-Z0-9]/g, '');
+        var div = document.createElement('div');
+        div.id = divId;
+        document.getElementById('myDiv').appendChild(div);
+
+        // Extract revisions data for the event
+        var revisions = revisionsByMonth[event];
+
+        // Create x values (months)
+        var months = Array.from({ length: revisions.length }, (_, i) => i + 1);
+
+        //getting middle value to highlight event date
+        var middle = parseInt(months.length / 2) + 1;
+
+        // Calculate the dates based on the unit and interval
+        var calculatedDates = [];
+        for (var i = 0; i < revisions.length; i++) {
+            var calculatedDate = new Date(dateList[index]);
+            if (unit === 'days') {
+                calculatedDate.setDate(calculatedDate.getDate() - Math.floor(revisions.length / 2) + i);
+            } else if (unit === 'weeks') {
+                calculatedDate.setDate(calculatedDate.getDate() - Math.floor(revisions.length / 2) * 7 + i * 7);
+            } else if (unit === 'months') {
+                calculatedDate.setMonth(calculatedDate.getMonth() - Math.floor(revisions.length / 2) + i);
+            }
+            calculatedDates.push(calculatedDate.toISOString().split('T')[0]);
+        }
+
+        // Create a trace for the event with the line color set to blue and markers at middle point (when event happened)
+        var trace = {
+            x: months,
+            y: revisions,
+            mode: 'lines+markers',
+            name: event,
+            line: {
+                color: 'blue' // Set the line color to blue
+            },
+            marker: {
+                size: months.map((month) => month === middle ? 10 : 0), // Set marker size to 10 for month 6, otherwise 0
+                color: months.map((month) => month === middle ? 'red' : 'blue') // Set marker color to red for month 6, otherwise blue
+            },
+            text: calculatedDates.map((date, i) => {
+        var startDate = date;
+        var endDate = new Date(date);
+        if (unit === 'days') {
+            endDate.setDate(endDate.getDate() + 1); // Add one day for days unit
+        } else if (unit === 'weeks') {
+            endDate.setDate(endDate.getDate() + 7); // Add one week for weeks unit
+        } else if (unit === 'months') {
+            endDate.setMonth(endDate.getMonth() + 1); // Add one month for months unit
+        }
+        return months[i] === middle ? `Solar Event Occurrence on ${startDate}, Start Date: ${startDate} - End Date: ${endDate.toISOString().split('T')[0]}` : `Start Date: ${startDate} - End Date: ${endDate.toISOString().split('T')[0]}`;
+    })
+};
+
+        index+=1
+
+        // Create layout options with title
+        var layout = {
+            title: event,
+            xaxis: {
+                title: `${unit} `,
+            },
+            yaxis: {
+                title: 'Number of Revisions'
+            }
+        };
+
+        // Create the Plotly chart with layout
+        Plotly.newPlot(divId, [trace], layout);
+    });
+</script>
