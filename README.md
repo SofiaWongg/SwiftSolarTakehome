@@ -66,16 +66,6 @@ Although this was a small project, I focused on making the functionalities scala
 
 **frequency_plots** This is the function called to generate plots on initial load. Similar to process_form, but uses default values '20' and 'months' to generate plots. Renders the HTML file: frequency_plots.html.
 
-## Resources Used
-
-**Pandas:** A Python library used for data manipulation and analysis, particularly for loading data from CSV files.
-**Plotly:** A Python graphing library used for creating interactive plots and visualizations.
-**Requests:** A Python HTTP library used for making HTTP requests to the Wikipedia API.
-**Wikipedia API:** The API used to retrieve revision data for Wikipedia pages related to solar energy events.
-**NumPy:** A Python library used for numerical computing, though it's not explicitly used in this project.
-**datetime:** A Python module used for manipulating dates and times.
-**CSV file:** A local file containing data about solar energy events, accessed using Python's built-in file reading capabilities.
-
 
 ## Future Considerations
 
