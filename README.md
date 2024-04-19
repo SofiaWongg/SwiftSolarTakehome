@@ -58,7 +58,7 @@ Although this was a small project, I focused on making the functionalities scala
 
 **load_solar_events:** This function reads data from a CSV file containing information about solar energy events. It uses Pandas to load the CSV file into a DataFrame and returns the DataFrame.
 
-**create_dictionary** This function calls get_num_revisions from wiki_api.py for each event and stores information in a dictionary with event names mapped to arrays of revisions. Returns this dictionary along with an array of event dates. 
+**create_dictionary** This function calls get_num_revisions from wiki_api.py for each event and stores information in a dictionary with event names mapped to arrays of revisions.It returns this dictionary along with an array of event dates. 
 
 **get_num_revisions:** This function makes GET requests to the Wikipedia API to retrieve revision data for a specified event within a given time interval. It iterates over each month within the interval, making API requests to fetch revision data. The number of revisions for each month is stored in a list (revisions_array), which is returned after all months have been processed.
 
