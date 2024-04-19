@@ -9,7 +9,7 @@
 
 ## Summary
 
-A web app that allow us to plot the rate of revisions on chosen Wikipedia pages that relate to the data we have about solar events. The plots are initialized with the interval of 21 and time unit of months, but users are able to select their interval and unit and re-generate plots. When hovering over plots users can see the date range of a particular value, as well as the date of the event. 
+A web app that allows us to plot the rate of revisions on chosen Wikipedia pages that relate to the data we have about solar events. The plots are initialized with an interval of 21 and a time unit of months, but users can select their interval and unit and re-generate plots. When hovering over plots, users can see the date range of a particular value and the event date. 
 
 ## Run Instructions
 
