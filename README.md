@@ -26,8 +26,8 @@ A web app that allows us to plot the rate of revisions on chosen Wikipedia pages
 5. Open a web browser and go to http://localhost:8000 to access the application.
 **Does take some time to load 
 
-**For running tests (on mac):**
-In your terminal navigate to project directory and run:
+**For running tests (on mac):** <br>
+In your terminal navigate to the folder where manage.py is located and run:
 
 `python3 manage.py test`
 ## Approach
