@@ -71,7 +71,7 @@ Although this was a small project, I focused on making the functionalities scala
 
 Here are some features I would have liked to include in this project, given extra time:
 
-- **Testing & Error Handling** - There is a lot that could be added to testing. Currently, only the API call and CSV reader are tested, but there should really be multiple tests for each function. There are also better ways to test API's and endpoints outside of the unit testing django.test functionality.
+- **Testing & Error Handling** - There is a lot that could be added to testing. Currently, only the API call and CSV reader are tested, but there should be multiple tests for each function. There are also better ways to test API's and endpoints outside of the unit testing django.test functionality.
   
 - **Data saving capability for future reference (Django Caching)** - One of the most significant downsides to this tool is the loading time. Since data generally remains the same from query to query, having a data-saving capability could be incredibly useful. It would also allow me to hold larger amounts of data since I would not need to load data every time, and it could lead to more detailed and effective plots. 
 
